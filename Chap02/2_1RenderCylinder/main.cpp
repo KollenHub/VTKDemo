@@ -6,6 +6,8 @@
 #include <vtkCylinderSource.h>
 #include <vtkPolyDataMapper.h>
 #include <vtkActor.h>
+#include <vtkLight.h>
+#include <vtkCamera.h>
 
 int main()
 {

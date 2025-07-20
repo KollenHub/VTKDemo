@@ -21,6 +21,10 @@ find_package(VTK REQUIRED CONFIG COMPONENTS
   RenderingOpenGL2
   IOLegacy
   InteractionImage
+  IOImport
+  CommonExecutionModel
+  ImagingSources
+  InteractionStyle
   )
 
 

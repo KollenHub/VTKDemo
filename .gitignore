@@ -3,3 +3,4 @@ output/
 .vscode/
 .vs/
 bin/
+PackagePath.config

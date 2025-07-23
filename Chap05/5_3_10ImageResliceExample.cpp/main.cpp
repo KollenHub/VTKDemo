@@ -42,8 +42,7 @@ int main()
 		1, 0, 0, 0,
 		0, 0, 1, 0,
 		0, -1, 0, 0,
-		0, 0, 0, 1
-	};//提取平行于XZ平面的切片 标准的笛卡尔坐标系中，X轴正方向为右，Y轴正方向为后，Z轴正方向为上
+		0, 0, 0, 1}; // 提取平行于XZ平面的切片 标准的笛卡尔坐标系中，X轴正方向为右，Y轴正方向为后，Z轴正方向为上
 
 	static double sagittalElements[16] = {
 		0, 0, -1, 0,
@@ -52,12 +51,16 @@ int main()
 		0, 0, 0, 1
 	};//提取平行于YZ平面的切片 标准的笛卡尔坐标系中，X轴正方向为右，Y轴正方向为后，Z轴正方向为上
 
+	// static double sagittalElements[16] = {0, 0, 1, 0,  // X = Z (指向“前”)
+	// 									  0, 1, 0, 0,  // Y = Y (仍然“后”)
+	// 									  -1, 0, 0, 0, // Z = -X (指向“左”)
+	// 									  0, 0, 0, 1};
 
 	vtkSmartPointer<vtkMatrix4x4>
 		resliceAxes = vtkSmartPointer<vtkMatrix4x4>::New();
-	resliceAxes->DeepCopy(axialElements);
+	resliceAxes->DeepCopy(sagittalElements);
 	resliceAxes->SetElement(0, 3, center[0]);
-	resliceAxes->SetElement(1, 3, center[1]);
+	resliceAxes->SetElement(1, 3, center[1] - 10);
 	resliceAxes->SetElement(2, 3, center[2]);
 
 	vtkSmartPointer<vtkImageReslice> reslice = vtkSmartPointer<vtkImageReslice>::New();

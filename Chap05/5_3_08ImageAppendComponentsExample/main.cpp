@@ -12,8 +12,10 @@ int main()
 	//红
 	vtkSmartPointer<vtkImageCanvasSource2D> red = vtkSmartPointer<vtkImageCanvasSource2D>::New();
 	red->SetScalarTypeToUnsignedChar();
+	//每个像素只有一个值所以是灰度值
 	red->SetNumberOfScalarComponents(1);
 	red->SetExtent(0, 100, 0,100, 0, 0);
+	red->SetDrawColor(0,0,0,0);
 	red->FillBox(0,100,0,100);
 	red->SetDrawColor(255,0,0);
 	red->FillBox(20,40,20,40);
@@ -22,21 +24,25 @@ int main()
 	//绿
 	vtkSmartPointer<vtkImageCanvasSource2D> green = vtkSmartPointer<vtkImageCanvasSource2D>::New();
 	green->SetScalarTypeToUnsignedChar();
+	//每个像素只有一个值所以是灰度值
 	green->SetNumberOfScalarComponents(1);
 	green->SetExtent(0, 100, 0,100, 0, 0);
+	green->SetDrawColor(0,0,0,0);
 	green->FillBox(0,100,0,100);
-	green->SetDrawColor(0,255,0);
+	green->SetDrawColor(255,0,0);
 	green->FillBox(30,50,30,50);
 	green->Update();
 
 	//蓝
 	vtkSmartPointer<vtkImageCanvasSource2D> blue = vtkSmartPointer<vtkImageCanvasSource2D>::New();
 	blue->SetScalarTypeToUnsignedChar();
+	//每个像素只有一个值所以是灰度值
 	blue->SetNumberOfScalarComponents(1);
 	blue->SetExtent(0, 100, 0,100, 0, 0);
+	blue->SetDrawColor(0,0,0,0);
 	blue->FillBox(0,100,0,100);
-	blue->SetDrawColor(0,255,0);
-	blue->FillBox(30,50,30,50);
+	blue->SetDrawColor(255,0,0);
+	blue->FillBox(40,60,40,60);
 	blue->Update();
 
 	vtkSmartPointer<vtkImageAppendComponents> appendFilter = vtkSmartPointer<vtkImageAppendComponents>::New();

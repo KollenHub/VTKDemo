@@ -26,6 +26,8 @@ find_package(VTK REQUIRED CONFIG COMPONENTS
   ImagingSources
   InteractionStyle
   ImagingColor
+  ImagingStatistics
+  RenderingAnnotation
   )
 
 

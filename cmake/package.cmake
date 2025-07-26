@@ -1,9 +1,15 @@
 set(CONFIG_FILE "${CMAKE_SOURCE_DIR}/PackagePath.config")
+if(NOT EXISTS "${CONFIG_FILE}")
+    file(WRITE "${CONFIG_FILE}" "#Qt5_DIR=C:/xxx/xxx/xxx(Include Qt5Config.cmake)")
+endif()
 file(READ "${CONFIG_FILE}" CONFIG_CONTENT)
 
 # 解析配置文件内容
 string(REGEX MATCHALL "([^\n]+)" CONFIG_LINES "${CONFIG_CONTENT}")
 foreach(LINE ${CONFIG_LINES})
+    if(${LINE} MATCHES "^#")
+        continue()
+    endif()
     string(REGEX MATCH "([^=]+)=(.*)" _ ${LINE})
     set(${CMAKE_MATCH_1} ${CMAKE_MATCH_2})
 endforeach()

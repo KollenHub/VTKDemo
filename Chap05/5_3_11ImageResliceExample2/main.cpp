@@ -11,6 +11,7 @@
 #include <vtkMetaImageReader.h>
 #include <vtkMatrix4x4.h>
 #include <vtkImageReslice.h>
+#include "vtkImageInteractionCallback.hpp"
 
 int main()
 {
@@ -32,8 +33,6 @@ int main()
 	center[1] = origin[1] + spacing[1] * 0.5 * (extent[2] + extent[3]);
 	center[2] = origin[2] + spacing[2] * 0.5 * (extent[4] + extent[5]);
 
-	//矩阵为行主序，即矩阵按照下面实际情况
-
 	static double axialElements[16] = {
 		1, 0, 0, 0,
 		0, 1, 0, 0,
@@ -52,15 +51,13 @@ int main()
 		0, -1, 0, 0,
 		0, 0, 0, 1
 	};//提取平行于YZ平面的切片 标准的笛卡尔坐标系中，X轴正方向为右，Y轴正方向为后，Z轴正方向为上
-
+ 
 	vtkSmartPointer<vtkMatrix4x4>
 		resliceAxes = vtkSmartPointer<vtkMatrix4x4>::New();
-	resliceAxes->DeepCopy(sagittalElements);
+	resliceAxes->DeepCopy(axialElements);
 	resliceAxes->SetElement(0, 3, center[0]);
 	resliceAxes->SetElement(1, 3, center[1]);
 	resliceAxes->SetElement(2, 3, center[2]);
-    
-	resliceAxes->PrintSelf(std::cout, vtkIndent(2));
 
 	vtkSmartPointer<vtkImageReslice> reslice = vtkSmartPointer<vtkImageReslice>::New();
 	reslice->SetInputConnection(reader->GetOutputPort());
@@ -81,7 +78,16 @@ int main()
 	vtkSmartPointer<vtkRenderWindowInteractor>
 		rwInteractor = vtkSmartPointer<vtkRenderWindowInteractor>::New();
 
+    
+	vtkSmartPointer<vtkImageInteractionCallback> callback=vtkSmartPointer<vtkImageInteractionCallback>::New();
+	callback->SetInteractor(rwInteractor);
+	callback->SetImageReslice(reslice);
+
 	vtkSmartPointer<vtkInteractorStyleImage> style = vtkSmartPointer<vtkInteractorStyleImage>::New();
+
+	style->AddObserver(vtkCommand::MouseMoveEvent, callback);
+	style->AddObserver(vtkCommand::LeftButtonPressEvent, callback);
+	style->AddObserver(vtkCommand::LeftButtonReleaseEvent, callback);
 
 	rwInteractor->SetInteractorStyle(style);
 	renderWindow->SetInteractor(rwInteractor);

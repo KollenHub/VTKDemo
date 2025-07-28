@@ -8,6 +8,9 @@
 #include <vtkCellArray.h>
 #include <vtkPolyData.h>
 #include <vtkPolyDataMapper.h>
+#include <vtkUnsignedCharArray.h>
+#include <vtkPointData.h>
+#include <vtkCellData.h>
 int main()
 {
 
@@ -38,6 +41,31 @@ int main()
     vtkSmartPointer<vtkPolyData> polydata = vtkSmartPointer<vtkPolyData>::New();
     polydata->SetPoints(points);
     polydata->SetPolys(cells);
+
+
+    //颜色
+    unsigned char red[3] = {255, 0, 0};
+    unsigned char green[3]={0,255,0};
+    unsigned char blue[3]={0,0,255};
+
+    //点颜色和单元颜色取其一，不然是顶点颜色渲染优先
+    //点颜色
+    vtkSmartPointer<vtkUnsignedCharArray> pointColors=vtkSmartPointer<vtkUnsignedCharArray>::New();
+    pointColors->SetNumberOfComponents(3);
+    pointColors->InsertNextTypedTuple(red);
+    pointColors->InsertNextTypedTuple(green);
+    pointColors->InsertNextTypedTuple(blue);
+    pointColors->InsertNextTypedTuple(green);
+    pointColors->InsertNextTypedTuple(red);
+    polydata->GetPointData()->SetScalars(pointColors);
+
+    //单元颜色
+    vtkSmartPointer<vtkUnsignedCharArray> cellColors=vtkSmartPointer<vtkUnsignedCharArray>::New();
+    cellColors->SetNumberOfComponents(3);
+    cellColors->InsertNextTypedTuple(red);
+    cellColors->InsertNextTypedTuple(green);
+    polydata->GetCellData()->SetScalars(cellColors);
+
 
     vtkSmartPointer<vtkPolyDataMapper> mapper = vtkSmartPointer<vtkPolyDataMapper>::New();
     mapper->SetInputData(polydata);

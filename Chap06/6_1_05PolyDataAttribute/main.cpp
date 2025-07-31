@@ -31,6 +31,8 @@ int main(int, char *[])
         cellVectors->InsertNextTuple3(0.0, 0.0, 1.0);
     }
 
+    //这里设置的是单元的标量属性，如果是点标量属性，应该设置为点数组
+    //grid->GetPointData()->SetScalars(cellScalars);
     grid->GetCellData()->SetScalars(cellScalars);
     grid->GetCellData()->SetVectors(cellVectors);
 

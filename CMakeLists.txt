@@ -31,10 +31,18 @@ find_package(VTK REQUIRED CONFIG COMPONENTS
   ImagingMath
   ImagingGeneral
   ImagingFourier
-  )
+  FiltersModeling
+)
+
+if(MSVC)
+  # 设置 MSVC 使用 UTF-8
+  add_compile_options(/utf-8)
+endif()
 
 
 
+add_library(libAutoCom STATIC com/AutoCom.h com/AutoCom.cpp)
+target_include_directories(libAutoCom PUBLIC ${CMAKE_SOURCE_DIR}/com)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_LIST_DIR}/bin)
@@ -51,6 +59,7 @@ foreach(CHAP_DIR ${CHAP_DIRS})
       if(EXISTS ${CHAP_CHILD_DIR}/CMakeLists.txt)
         get_filename_component(CHAP_CHILD_NAME ${CHAP_CHILD_DIR} NAME)
         add_subdirectory(${CHAP_DIR}/${CHAP_CHILD_NAME})
+        target_link_libraries(${CHAP_CHILD_NAME} PRIVATE libAutoCom)
       endif()
     endforeach()
   endif()

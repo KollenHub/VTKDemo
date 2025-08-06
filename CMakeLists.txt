@@ -32,6 +32,7 @@ find_package(VTK REQUIRED CONFIG COMPONENTS
   ImagingGeneral
   ImagingFourier
   FiltersModeling
+  IOPLY
 )
 
 if(MSVC)

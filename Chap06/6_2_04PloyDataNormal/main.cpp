@@ -11,9 +11,11 @@
 #include <vtkRenderWindow.h>
 #include <vtkRenderer.h>
 #include <vtkRenderWindowInteractor.h>
+#include "AutoCom.h"
 
 int main(int argc, char *argv[])
 {
+    AutoCOM::Init();
     vtkSmartPointer<vtkPLYReader> reader = vtkSmartPointer<vtkPLYReader>::New();
     reader->SetFileName("../datas/bunny.ply");
     reader->Update();

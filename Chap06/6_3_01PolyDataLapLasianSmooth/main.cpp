@@ -5,11 +5,13 @@
 #include <vtkSmoothPolyDataFilter.h>
 #include <vtkPLYReader.h>
 #include <vtkPolyDataMapper.h>
+#include "AutoCom.h"
 
 // 网格平滑
 int main(int argc, char *argv[])
 {
 
+    AutoCOM::Init();
     vtkSmartPointer<vtkPLYReader> reader = vtkSmartPointer<vtkPLYReader>::New();
     reader->SetFileName("../datas/bunny.ply");
     reader->Update();

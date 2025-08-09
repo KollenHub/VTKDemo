@@ -49,7 +49,7 @@ int main()
 
 	// 环
 	vtkSmartPointer<vtkDiskSource> diskSource = vtkSmartPointer<vtkDiskSource>::New();
-	diskSource->SetCenter(0, -5, 0);
+	// diskSource->SetCenter(0, -5, 0);
 	diskSource->Update();
 
 	// 平面

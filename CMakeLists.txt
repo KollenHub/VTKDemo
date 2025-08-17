@@ -18,6 +18,7 @@ find_package(VTK REQUIRED CONFIG COMPONENTS
   RenderingCore
   RenderingFreeType
   RenderingGL2PSOpenGL2
+  RenderingVolumeOpenGL2
   RenderingOpenGL2
   IOLegacy
   InteractionImage
@@ -36,6 +37,8 @@ find_package(VTK REQUIRED CONFIG COMPONENTS
   FiltersExtraction
   FiltersGeometry
   IOImage
+  FiltersTexture
+  RenderingVolume
 )
 
 if(MSVC)
@@ -50,6 +53,9 @@ target_include_directories(libAutoCom PUBLIC ${CMAKE_SOURCE_DIR}/com)
 
 add_library(libTimer STATIC timer/Timer.h timer/Timer.cpp)
 target_include_directories(libTimer PUBLIC ${CMAKE_SOURCE_DIR}/timer)
+
+
+add_subdirectory(vtkExtension)
 
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/bin)
@@ -69,6 +75,7 @@ foreach(CHAP_DIR ${CHAP_DIRS})
         add_subdirectory(${CHAP_DIR}/${CHAP_CHILD_NAME})
         target_link_libraries(${CHAP_CHILD_NAME} PRIVATE libAutoCom)
         target_link_libraries(${CHAP_CHILD_NAME} PRIVATE libTimer)
+        target_link_libraries(${CHAP_CHILD_NAME} PRIVATE libVTKExtension)
       endif()
     endforeach()
   endif()

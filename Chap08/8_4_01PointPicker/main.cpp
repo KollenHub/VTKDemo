@@ -60,7 +60,7 @@ int main(int argc, char **argv)
     renderWindowInteractor->SetPicker(pointPicker);
     renderWindowInteractor->SetRenderWindow(renderWindow);
 
-    vtkSmartPointer<PointPickerInteractorStyle> style = PointPickerInteractorStyle::New();
+    vtkSmartPointer<PointPickerInteractorStyle> style = vtkSmartPointer<PointPickerInteractorStyle>::New();
     renderWindowInteractor->SetInteractorStyle(style);
 
     vtkSmartPointer<vtkSphereSource> sphereSource = vtkSmartPointer<vtkSphereSource>::New();

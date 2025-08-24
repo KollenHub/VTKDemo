@@ -95,7 +95,7 @@ int main(int argc, char **argv)
     renderWindowInteractor->SetPicker(pointPicker);
     renderWindowInteractor->SetRenderWindow(renderWindow);
 
-    vtkSmartPointer<CellPickerInteractorStyle> style = CellPickerInteractorStyle::New();
+    vtkSmartPointer<CellPickerInteractorStyle> style = vtkSmartPointer<CellPickerInteractorStyle>::New(); 
     renderWindowInteractor->SetInteractorStyle(style);
 
     vtkSmartPointer<vtkSphereSource> sphereSource = vtkSmartPointer<vtkSphereSource>::New();

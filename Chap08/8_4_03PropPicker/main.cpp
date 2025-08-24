@@ -8,6 +8,8 @@
 #include <vtkSmartPointer.h>
 #include <vtkInteractorStyleTrackballCamera.h>
 #include <vtkPropPicker.h>
+#include <vtkWeakPointer.h>
+
 
 class PropPickerInteractorStyle : public vtkInteractorStyleTrackballCamera
 {
@@ -22,12 +24,15 @@ public:
     {
         int *clickPos = this->GetInteractor()->GetEventPosition();
 
+        std::cout << "Click at x=" << clickPos[0] << ", y=" << clickPos[1] << std::endl;
+
         // 根据点进行选择
         vtkSmartPointer<vtkPropPicker> picker = vtkSmartPointer<vtkPropPicker>::New();
 
         picker->Pick(clickPos[0], clickPos[1], 0, this->GetDefaultRenderer());
 
-        double *pos = picker->GetPickPosition();
+        if (picker->GetActor() != nullptr)
+            picker->GetActor()->GetProperty()->SetColor(1, 0, 0);
 
         // 如果之前已经选择了，则取消选择
 
@@ -40,7 +45,7 @@ public:
         if (this->LastPickedActor)
         {
             // 保存属性
-            this->LastPickedProperty->DeepCopy(this->LastPickedActor->GetProperty());
+            // this->LastPickedProperty->DeepCopy(this->LastPickedActor->GetProperty());
 
             this->LastPickedActor->GetProperty()->SetColor(1.0, 0.0, 0.0);
             this->LastPickedActor->GetProperty()->SetDiffuse(1.0);
@@ -58,16 +63,17 @@ protected:
     }
     ~PropPickerInteractorStyle()
     {
-        LastPickedProperty->Delete();
+        if (LastPickedProperty)
+            LastPickedProperty->Delete();
     }
 
 private:
-    PropPickerInteractorStyle(const PropPickerInteractorStyle &); // Not implemented
 
-    vtkProperty* LastPickedProperty;
+    vtkProperty *LastPickedProperty;
 
-    vtkActor *LastPickedActor;
+    vtkWeakPointer<vtkActor> LastPickedActor;
 };
+
 
 int main(int argc, char **argv)
 {
@@ -80,7 +86,7 @@ int main(int argc, char **argv)
     renderWindow->AddRenderer(renderer);
     renderWindowInteractor->SetRenderWindow(renderWindow);
 
-    vtkSmartPointer<PropPickerInteractorStyle> style = PropPickerInteractorStyle::New();
+    vtkSmartPointer<PropPickerInteractorStyle> style = vtkSmartPointer<PropPickerInteractorStyle>::New(); 
     style->SetDefaultRenderer(renderer);
     renderWindowInteractor->SetInteractorStyle(style);
 

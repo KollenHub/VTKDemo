@@ -5,7 +5,7 @@ project(VTK_DEMO)
 include(cmake/directory.cmake)
 include(cmake/package.cmake)
 
-find_package(Qt5 REQUIRED CONFIG COMPONENTS Widgets Core)
+find_package(Qt5 REQUIRED CONFIG COMPONENTS Widgets Core Gui)
 
 find_package(VTK REQUIRED CONFIG COMPONENTS
   CommonColor
@@ -39,6 +39,7 @@ find_package(VTK REQUIRED CONFIG COMPONENTS
   IOImage
   FiltersTexture
   RenderingVolume
+  GUISupportQt
 )
 
 if(MSVC)

@@ -16,20 +16,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout_4">
     <item>
-     <widget class="QWidget" name="vtkWidget" native="true">
-      <property name="minimumSize">
-       <size>
-        <width>600</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="baseSize">
-       <size>
-        <width>600</width>
-        <height>0</height>
-       </size>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="vtkContainer"/>
     </item>
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">

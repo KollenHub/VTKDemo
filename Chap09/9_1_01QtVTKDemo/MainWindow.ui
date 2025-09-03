@@ -16,81 +16,107 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout_4">
     <item>
-     <layout class="QHBoxLayout" name="vtkContainer"/>
+     <layout class="QGridLayout" name="vtkContainer"/>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QTreeView" name="treeView"/>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>位置：</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="PositionX"/>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="PositionY"/>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="PositionZ"/>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>旋转：</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="RotationX"/>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="RotationY"/>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="RotationZ"/>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <item>
-         <widget class="QLabel" name="label_3">
-          <property name="text">
-           <string>缩放：</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="ScaleX"/>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="ScaleY"/>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="ScaleZ"/>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <widget class="QPushButton" name="btnUpdate">
-        <property name="text">
-         <string>更新</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <widget class="QWidget" name="widget" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QTreeView" name="treeView"/>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>位置：</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="PositionX"/>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="PositionY"/>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="PositionZ"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>旋转：</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="RotationX"/>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="RotationY"/>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="RotationZ"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>缩放：</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="ScaleX"/>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="ScaleY"/>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="ScaleZ"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnUpdate">
+         <property name="text">
+          <string>更新</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </item>
    </layout>
   </widget>

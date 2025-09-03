@@ -6,20 +6,24 @@
 #include <vtkRenderer.h>
 #include <vtkGenericOpenGLRenderWindow.h>
 #include <QPushButton>
-
+#include "OperationBar.h"
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-
 
     QVTKOpenGLNativeWidget *vtkWidget = new QVTKOpenGLNativeWidget(this->ui->centralwidget);
     vtkWidget->setMinimumWidth(600);
 
     ui->vtkContainer->addWidget(vtkWidget, 0, 0, 2, 2);
 
-        // 添加工具条
-    ui->vtkContainer->addWidget(new QPushButton("Button"), 0, 0);
+    this->ui->vtkContainer->setContentsMargins(0, 0, 0, 0);
+    this->ui->vtkContainer->setSpacing(0);
+
+    OperationBar *bar = new OperationBar(this);
+    bar->setContentsMargins(0, 0, 0, 0);
+    bar->setFixedHeight(30);
+    // 添加工具条
+    ui->vtkContainer->addWidget(bar, 0, 0);
 
     // 2. (可选) 关联VTK渲染窗口
     //    也可以直接使用 vtkWidget->renderWindow()

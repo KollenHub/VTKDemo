@@ -1,7 +1,7 @@
 get_directory_name(EXE_NAME)
 
 # 查找当前项目下所有的文件
-file(GLOB_RECURSE SRC_FILES *.cpp *.h *.hpp *.ui)
+file(GLOB_RECURSE SRC_FILES *.cpp *.h *.hpp *.ui *.qrc)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -20,5 +20,7 @@ vtk_module_autoinit(
   MODULES ${VTK_LIBRARIES}
 )
 
+message("TARGET ${EXE_NAME} POST_BUILD
+  COMMAND ${WindeployqtPATH} $<TARGET_FILE:${EXE_NAME}>")
 add_custom_command(TARGET ${EXE_NAME} POST_BUILD
   COMMAND ${WindeployqtPATH} $<TARGET_FILE:${EXE_NAME}>)

@@ -1,0 +1,15 @@
+<RCC>
+  <qresource prefix="operation">
+    <file>resources/缩放.png</file>
+    <file>resources/俯视图.svg</file>
+    <file>resources/后视图.svg</file>
+    <file>resources/前视图.svg</file>
+    <file>resources/旋转.png</file>
+    <file>resources/选择.png</file>
+    <file>resources/仰视图.svg</file>
+    <file>resources/移动.png</file>
+    <file>resources/右视图.svg</file>
+    <file>resources/主视图.svg</file>
+    <file>resources/左视图.svg</file>
+  </qresource>
+</RCC>
